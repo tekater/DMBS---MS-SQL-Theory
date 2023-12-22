@@ -37,7 +37,7 @@ GROUP BY
 SELECT 
 	dbo.Teachers.last_name	+	' ' +
 	dbo.Teachers.first_name +	' ' +
-	dbo.Teachers.middle_name	AS 'Препод',
+	dbo.Teachers.middle_name	AS 'Преподаватель',
 	COUNT(*)					AS 'Всего пар',
 	sum(case when [spent] = 1 AND [date] >= '2023-12-01'then 1 else 0 end)													AS 'Проведено пар в декабре',
 	sum(case when [spent] = 0 AND [date] >= '2023-12-01' AND [date] < '2024-01-01' then 1 else 0 end)						AS 'Запланировано пар в декабре',
