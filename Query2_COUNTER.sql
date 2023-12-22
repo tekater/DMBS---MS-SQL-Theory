@@ -12,6 +12,7 @@ AND
 	[discipline]	= (SELECT disciplines_id FROM Disciplines WHERE discipline_name LIKE '%MS SQL%')
 
 
+
 --SELECT 
 --	COUNT(*) AS 'Всего'
 --FROM Schedule
