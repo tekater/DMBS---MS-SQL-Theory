@@ -1,4 +1,4 @@
-# DMBS---MS-SQL-Theory
+# DBMS_MS-SQL-Theory
 First lesson
 
 ~База данных - это упорядоченный набор данных.
