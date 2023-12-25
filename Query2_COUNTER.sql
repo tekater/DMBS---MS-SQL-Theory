@@ -31,7 +31,15 @@ AND
 GROUP BY 
 	dbo.Schedule.[discipline]
 
-
+SELECT
+	[Дисциплина] = dbo.Disciplines.discipline_name,
+	[Количество занятий] = COUNT(discipline)
+FROM	
+	Schedule, Disciplines
+WHERE
+	Schedule.discipline = Disciplines.disciplines_id
+GROUP BY
+	Disciplines.discipline_name;
 
 --- Счётчик пар Преподавателей
 SELECT 
@@ -39,17 +47,18 @@ SELECT
 	dbo.Teachers.first_name +	' ' +
 	dbo.Teachers.middle_name	AS 'Преподаватель',
 	COUNT(*)					AS 'Всего пар',
+	sum(case when [spent] = 1 then 1 else 0 end)													AS 'Проведено',
+	sum(case when [spent] = 0 then 1 else 0 end)						AS 'Запланировано',
+	sum(case when [spent] = [spent] AND [date] >= '2023-12-01' AND [date] < '2024-01-01' then 1 else 0 end)					AS 'Всего пар в декабре',
 	sum(case when [spent] = 1 AND [date] >= '2023-12-01'then 1 else 0 end)													AS 'Проведено пар в декабре',
 	sum(case when [spent] = 0 AND [date] >= '2023-12-01' AND [date] < '2024-01-01' then 1 else 0 end)						AS 'Запланировано пар в декабре',
-	sum(case when [spent] = [spent] AND [date] >= '2023-12-01' AND [date] < '2024-01-01' then 1 else 0 end)					AS 'Всего пар в декабре',
 	IIF(sum(case when [spent] = [spent] AND [date] >= '2023-12-01' AND [date] < '2024-01-01' then 1 else 0 end) = 0,0,
 	31.0 / sum(case when [spent] = [spent] AND [date] >= '2023-12-01' AND [date] < '2024-01-01' then 1 else 0 end))			AS 'Среднее число пар в декабре',
 	(sum(case when [spent] = [spent] AND [date] >= '2023-12-01' AND [date] < '2024-01-01' then 1 else 0 end) * 12) / 365.0	AS 'Среднее число пар в год',
 	(sum(case when [spent] = [spent] AND [date] >= '2023-12-01' AND [date] < '2024-01-01' then 1 else 0 end) * 12) / 30.0	AS 'Среднее число пар за 30 дней в году',
 	sum(case when [spent] = 1 AND [date] >= '2023-12-01' AND [date] < '2024-01-01' then [rate] else 0 end) AS 'ЗП за Декабрь' 
 
-FROM 
-	Schedule,Teachers,Disciplines
+FROM 	Schedule,Teachers,Disciplines
 WHERE
 	dbo.Schedule.[discipline] = dbo.Disciplines.disciplines_id
 AND
