@@ -2,9 +2,9 @@ USE DBMS;
 
 SELECT	
 	lesson_id,
-	discipline_name AS 'Дисциплина',
-	Groups.group_name AS 'Группа',
-	FORMATMESSAGE('%s %s %s',last_name, first_name ,middle_name) AS 'Преподаватель',
+	discipline_name AS 'Р”РёСЃС†РёРїР»РёРЅР°',
+	Groups.group_name AS 'Р“СЂСѓРїРїР°',
+	FORMATMESSAGE('%s %s %s',last_name, first_name ,middle_name) AS 'РџСЂРµРїРѕРґР°РІР°С‚РµР»СЊ',
 	[date],[time]
 FROM
 	Schedule, Disciplines, Teachers, Groups
