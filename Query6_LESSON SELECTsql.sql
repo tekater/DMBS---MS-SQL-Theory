@@ -5,13 +5,13 @@ USE DBMS;
 SET DATEFIRST 1
 
 SELECT
-	[Ñòóäåíò] = FORMATMESSAGE('%s %s %s',last_name,firts_name,middle_name),
-	[Ãðóïïà] = Groups.group_name,
-	[Äåíü íåäåëè] = DATENAME(DW,Schedule.[date]),
-	[Äàòà] = Schedule.[date],
-	[Âðåìÿ] = Schedule.[time],
-	[Ïðèñóòñòâèå] = IIF(Attendance.present = 1,'Áûë','Ïðîãóëÿë'),
-	[Äèñöèïëèíà] = Disciplines.discipline_name
+	[Студент] = FORMATMESSAGE('%s %s %s',last_name,firts_name,middle_name),
+	[Группа] = Groups.group_name,
+	[День недели] = DATENAME(DW,Schedule.[date]),
+	[Дата] = Schedule.[date],
+	[Время] = Schedule.[time],
+	[Присутствие] = IIF(Attendance.present = 1,'Был','Прогулял'),
+	[Дисциплина] = Disciplines.discipline_name
 FROM
 	Attendance, Schedule, Students, Groups, Disciplines
 WHERE
