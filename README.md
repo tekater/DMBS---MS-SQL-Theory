@@ -1,4 +1,5 @@
 # DBMS_MS-SQL-Theory
+SQL (Structured Query Language) Язык структурированных запросов
 First lesson
 
 ~База данных - это упорядоченный набор данных.
